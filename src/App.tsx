@@ -1,9 +1,10 @@
 import React from 'react'
+import JoinUs from 'organisms/JoinUs'
 
 function App() {
   return (
-    <div className='App'>
-      <header className='App-header'></header>
+    <div style={{ width: '100%' }}>
+      <JoinUs />
     </div>
   )
 }

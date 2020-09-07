@@ -16,7 +16,7 @@ export default () => (
         <InputPassword />
       </Form.Item>
       <Button type='primary' htmlType='submit'>
-        Sign In
+        Register
       </Button>
     </Form>
   </>
