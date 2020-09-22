@@ -16,9 +16,10 @@ const ButtonsContainer = styled.div`
 
 type IProps = {
   registerHandler: Function
+  loginHandler: Function
 }
 
-export default ({ registerHandler }: IProps) => {
+export default ({ registerHandler, loginHandler }: IProps) => {
   const [isVisible, setVisible] = useState('login')
 
   const handleVisible = (e: any) => {
@@ -42,7 +43,7 @@ export default ({ registerHandler }: IProps) => {
           </ButtonsContainer>
         }
       >
-        {isVisible === 'login' && <Login />}
+        {isVisible === 'login' && <Login onSubmit={loginHandler} />}
         {isVisible === 'register' && <Register onSubmit={registerHandler} />}
       </Card>
     </Container>

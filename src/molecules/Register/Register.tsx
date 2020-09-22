@@ -7,19 +7,19 @@ export default ({ onSubmit }: any) => (
     <Form onFinish={onSubmit}>
       <Form.Item
         name="name"
-        rules={[{ required: false, message: 'Please input your username!' }]}
+        rules={[{ required: true, message: 'Please input your username!' }]}
       >
         <Input placeholder="name" prefix={<SmileTwoTone />} />
       </Form.Item>
       <Form.Item
         name="email"
-        rules={[{ required: false, message: 'Please input your email!' }]}
+        rules={[{ required: true, message: 'Please input your email!' }]}
       >
         <Input placeholder="email" type="email" prefix={<MailTwoTone />} />
       </Form.Item>
       <Form.Item
         name="password"
-        rules={[{ required: false, message: 'Please input your password!' }]}
+        rules={[{ required: true, message: 'Please input your password!' }]}
       >
         <Input.Password placeholder="password" prefix={<LockTwoTone />} />
       </Form.Item>
