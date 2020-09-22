@@ -14,7 +14,11 @@ const ButtonsContainer = styled.div`
   justify-content: center;
 `
 
-export default () => {
+type IProps = {
+  registerHandler: Function
+}
+
+export default ({ registerHandler }: IProps) => {
   const [isVisible, setVisible] = useState('login')
 
   const handleVisible = (e: any) => {
@@ -27,16 +31,19 @@ export default () => {
         title={
           <ButtonsContainer>
             <Radio.Group onChange={(e) => handleVisible(e)}>
-              <Radio.Button value='login' checked={isVisible === 'login' ? true : false}>
+              <Radio.Button
+                value="login"
+                checked={isVisible === 'login' ? true : false}
+              >
                 Sign in
               </Radio.Button>
-              <Radio.Button value='register'>Register</Radio.Button>
+              <Radio.Button value="register">Register</Radio.Button>
             </Radio.Group>
           </ButtonsContainer>
         }
       >
         {isVisible === 'login' && <Login />}
-        {isVisible === 'register' && <Register />}
+        {isVisible === 'register' && <Register onSubmit={registerHandler} />}
       </Card>
     </Container>
   )
