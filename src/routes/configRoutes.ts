@@ -2,6 +2,6 @@ type IRoutes = [{ path: string }]
 
 export const routes: IRoutes = [
   {
-    path: '/register'
+    path: '/join-us'
   }
 ]
