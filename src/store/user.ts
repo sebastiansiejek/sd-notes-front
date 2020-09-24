@@ -26,3 +26,5 @@ export const login = (token: string) => async (dispatch: Dispatch) => {
     return console.error(e.message)
   }
 }
+
+export const isLogin = () => localStorage.getItem('user')
