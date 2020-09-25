@@ -1,7 +1,8 @@
 import React from 'react'
+import MainTemplate from 'templates/MainTemplate'
 
 export default () => (
-  <div>
-    <h1>Hoomepage</h1>
-  </div>
+  <MainTemplate>
+    <h1>Homepage</h1>
+  </MainTemplate>
 )
