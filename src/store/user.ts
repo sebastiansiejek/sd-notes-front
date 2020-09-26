@@ -1,28 +1,29 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit'
 import { notification } from 'antd'
+import { getUserToken } from 'utils/utils'
 
 const slice = createSlice({
   name: 'user',
   initialState: {
-    user: null
+    token: getUserToken()
   },
   reducers: {
     loginSuccess: (state, action) => {
-      state.user = action.payload
-      localStorage.setItem('user', JSON.stringify(action.payload))
+      state.token = action.payload
+      localStorage.setItem('userToken', JSON.stringify(action.payload))
     },
     logoutSuccess: (state) => {
-      state.user = null
-      localStorage.removeItem('user')
+      state.token = null
+      localStorage.removeItem('userToken')
     }
   }
 })
 
 export default slice.reducer
 
-const { loginSuccess, logoutSuccess } = slice.actions
-
 export const login = (token: string) => async (dispatch: Dispatch) => {
+  const { loginSuccess } = slice.actions
+
   try {
     dispatch(loginSuccess({ token }))
   } catch (e) {
@@ -31,6 +32,8 @@ export const login = (token: string) => async (dispatch: Dispatch) => {
 }
 
 export const logout = () => async (dispatch: Dispatch) => {
+  const { logoutSuccess } = slice.actions
+
   if (isLogin()) {
     dispatch(logoutSuccess())
     notification['success']({
