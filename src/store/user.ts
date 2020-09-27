@@ -2,11 +2,13 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit'
 import { notification } from 'antd'
 import { getUserToken } from 'utils/utils'
 
+export const initialState = {
+  token: getUserToken()
+}
+
 const slice = createSlice({
   name: 'user',
-  initialState: {
-    token: getUserToken()
-  },
+  initialState: initialState,
   reducers: {
     loginSuccess: (state, action) => {
       state.token = action.payload
