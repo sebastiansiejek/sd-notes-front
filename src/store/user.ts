@@ -1,5 +1,6 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit'
 import { notification } from 'antd'
+import store from 'store'
 import { getUserToken } from 'utils/utils'
 
 export const initialState = {
@@ -50,4 +51,5 @@ export const logout = () => async (dispatch: Dispatch) => {
   }
 }
 
-export const isLogin = () => localStorage.getItem('user')
+export const isLogin = () =>
+  store.getState().user.token || localStorage.getItem('userToken')
