@@ -2,7 +2,8 @@ import { createSlice, Dispatch } from '@reduxjs/toolkit'
 import { INotes } from 'types/types'
 
 export const initialState = {
-  notes: [] as INotes
+  notes: [] as INotes,
+  isVisibleModal: false
 }
 
 const slice = createSlice({
@@ -11,6 +12,9 @@ const slice = createSlice({
   reducers: {
     setNotes: (state, action) => {
       state.notes = action.payload
+    },
+    setVisibleModal: (state, action) => {
+      state.isVisibleModal = action.payload
     }
   }
 })
@@ -25,4 +29,11 @@ export const setNotes = (payload: INotes) => async (dispatch: Dispatch) => {
   } catch (e) {
     return console.error(e.message)
   }
+}
+
+export const setVisibleAddNoteModal = (payload: Boolean) => (
+  dispatch: Dispatch
+) => {
+  const { setVisibleModal } = slice.actions
+  dispatch(setVisibleModal(payload))
 }

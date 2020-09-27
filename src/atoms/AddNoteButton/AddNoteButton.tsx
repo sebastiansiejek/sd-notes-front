@@ -2,7 +2,7 @@ import React from 'react'
 import { PlusCircleTwoTone } from '@ant-design/icons'
 
 type IProps = {
-  onClick?: Function
+  onClick: VoidFunction
 }
 
 export default ({ onClick }: IProps) => (
@@ -13,6 +13,6 @@ export default ({ onClick }: IProps) => (
       right: '20px',
       bottom: '20px'
     }}
-    onClick={() => onClick}
+    onClick={onClick}
   />
 )
