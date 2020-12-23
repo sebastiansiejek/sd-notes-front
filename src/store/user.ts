@@ -1,7 +1,7 @@
-import { createSlice, Dispatch } from '@reduxjs/toolkit'
-import { notification } from 'antd'
 import store from 'store'
+import { createSlice, Dispatch } from '@reduxjs/toolkit'
 import { getUserToken } from 'utils/utils'
+import { notification } from 'antd'
 
 export const initialState = {
   token: getUserToken()

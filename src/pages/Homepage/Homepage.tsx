@@ -3,8 +3,6 @@ import MainTemplate from 'templates/MainTemplate'
 import NoteEditor from 'organisms/NoteEditor'
 import Notes from 'containers/Notes'
 import React from 'react'
-import SDNotesRequests from 'api/SDNotesRequests'
-import { INote } from 'types/types'
 import { Modal } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { setVisibleAddNoteModal } from 'store/note'
@@ -24,11 +22,7 @@ export default () => {
           width="80%"
           onCancel={() => dispatch(setVisibleAddNoteModal(false))}
         >
-          <NoteEditor
-            onChange={({ title, detail }: INote) => {
-              if (title && detail) SDNotesRequests.addNote({ title, detail })
-            }}
-          />
+          <NoteEditor />
         </Modal>
         <AddNoteButton onClick={() => dispatch(setVisibleAddNoteModal(true))} />
         <Notes />

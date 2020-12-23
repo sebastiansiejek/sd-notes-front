@@ -1,38 +1,37 @@
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 import React, { useState, useEffect } from 'react'
-import { debounce } from 'lodash'
-import { EditorState, convertToRaw } from 'draft-js'
+import SDNotesRequests from 'api/SDNotesRequests'
 import { Editor } from 'react-draft-wysiwyg'
-import { Form, Input } from 'antd'
+import { EditorState, convertToRaw } from 'draft-js'
+import { Form, Input, Button, notification } from 'antd'
+import { INote } from 'types/types'
 
-type IProps = {
-  onChange: any
-}
-
-export default ({ onChange }: IProps) => {
-  const [content, setContent] = useState(EditorState.createEmpty())
+export default () => {
+  const [detail, setDetail] = useState(EditorState.createEmpty())
   const [title, setTitle] = useState('')
+  const [data, setData] = useState({} as INote)
 
   useEffect(() => {
-    if (content) {
-      onChange({
-        content: JSON.stringify(convertToRaw(content.getCurrentContent())),
-        title
-      })
-    }
-  }, [content])
-
-  useEffect(() => {
-    if (title) {
-      onChange({
-        content,
-        title
-      })
-    }
-  }, [title])
+    setData({
+      title: title,
+      detail: JSON.stringify(convertToRaw(detail.getCurrentContent()))
+    })
+  }, [detail, title])
 
   return (
-    <Form>
+    <Form
+      onFinish={() => {
+        const { title, detail } = data
+        if (title && detail) {
+          SDNotesRequests.addNote({ title, detail }).then(() => {
+            notification['success']({
+              message: 'Note has been added'
+            })
+          })
+          setTitle('')
+        }
+      }}
+    >
       <Form.Item
         name="title"
         rules={[{ required: true, message: 'Title is required' }]}
@@ -41,11 +40,12 @@ export default ({ onChange }: IProps) => {
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Title"
           type="text"
+          defaultValue={title}
         />
       </Form.Item>
       <Form.Item>
         <Editor
-          onEditorStateChange={setContent}
+          onEditorStateChange={setDetail}
           editorStyle={{
             minHeight: '40vh',
             border: '1px solid #d9d9d9',
@@ -68,6 +68,9 @@ export default ({ onChange }: IProps) => {
           }}
         />
       </Form.Item>
+      <Button type="primary" htmlType="submit">
+        Dodaj
+      </Button>
     </Form>
   )
 }

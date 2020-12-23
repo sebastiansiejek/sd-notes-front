@@ -5,8 +5,8 @@ import styled from 'styled-components'
 import { Card, Radio } from 'antd'
 
 const Container = styled.div`
-  max-width: 440px;
-  margin: 30rem auto;
+  max-width: 70vw;
+  margin: auto;
 `
 
 const ButtonsContainer = styled.div`
@@ -31,13 +31,8 @@ export default ({ registerHandler, loginHandler }: IProps) => {
       <Card
         title={
           <ButtonsContainer>
-            <Radio.Group onChange={(e) => handleVisible(e)}>
-              <Radio.Button
-                value="login"
-                checked={isVisible === 'login' ? true : false}
-              >
-                Sign in
-              </Radio.Button>
+            <Radio.Group defaultValue="login">
+              <Radio.Button value="login">Sign in</Radio.Button>
               <Radio.Button value="register">Register</Radio.Button>
             </Radio.Group>
           </ButtonsContainer>

@@ -1,9 +1,6 @@
-import AddNote from 'atoms/AddNoteButton'
-import NoteEditor from 'organisms/NoteEditor'
 import React from 'react'
 import Sider from 'organisms/Sider'
 import { Layout } from 'antd'
-import { Modal } from 'antd'
 
 const { Header, Content } = Layout
 
@@ -15,7 +12,8 @@ export default ({ children }: any) => (
         style={{
           position: 'fixed',
           right: 0,
-          width: 'calc(100% - 200px)'
+          width: 'calc(100% - 200px)',
+          zIndex: 9
         }}
       ></Header>
       <Content
@@ -24,10 +22,6 @@ export default ({ children }: any) => (
         }}
       >
         {children}
-        <Modal visible={true} title="Note" footer={[]} width="80%">
-          <NoteEditor onChange={(e: any) => console.log(e)} />
-        </Modal>
-        <AddNote />
       </Content>
     </Layout>
   </Layout>
